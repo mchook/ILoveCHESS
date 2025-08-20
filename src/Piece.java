@@ -20,17 +20,17 @@ public class Piece {
         activated = false;
         parent = p;
     }
-    public Piece(boolean isWhite, int[] coordinates, PApplet p, PImage white_P_IMG, PImage black_P_Image, int type) {
+    public Piece(boolean isWhite, int[] coordinates, PApplet p, PImage whitePImg, PImage blackPImg, int type) {
         this.isWhite = isWhite;
         activated = false;
         parent = p;
         for (int i = 0; i < coordinates.length; i++) {
-            this.coordinates[i] = coordinates[i]*80;
-            pos[i] = coordinates[i];
+            this.coordinates[i] = coordinates[i];
+            pos[i] = (coordinates[i]/80)-1;
         }
         if(isWhite()) {
-            pieceIMG = white_P_IMG;
-        } else pieceIMG = black_P_Image;
+            pieceIMG = whitePImg;
+        } else pieceIMG = blackPImg;
         pieceIMG.resize(80,80);
         this.type = type * whiteOrBlack();
     }
@@ -62,8 +62,17 @@ public class Piece {
         return activated;
     }
 
-    public void setActivated(boolean activated) {
+    public void displayMoves(Board[][] b) {
+
+    }
+
+    public void setActivated(boolean activated, Board[][] board) {
         this.activated = activated;
+        if (activated) {
+            this.displayMoves(board);
+        } else {
+            deactivate(board);
+        }
     }
 
     public void setNewX(int newX) {

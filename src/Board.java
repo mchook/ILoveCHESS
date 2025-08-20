@@ -49,14 +49,11 @@ public class Board {
         this.activated = activated;
     }
 
-    public int getType() {
-        return type;
-    }
 
     public void drawCircle() {
         if(activated) {
             parent.fill(173, 216, 230);
-            parent.ellipse(coordinates[0]+40, coordinates[1]+40, 15, 15);
+            parent.ellipse(coordinates[0] + 40, coordinates[1] + 40, 15, 15);
         }
     }
 }

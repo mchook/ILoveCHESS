@@ -26,7 +26,6 @@ public class Game extends PApplet {
         img_white_pawn = loadImage("images/white_pawn.png");
         whitePieces = setWhitePieces();
         blackPieces = setBlackPieces();
-        drawPieces();
     }
 
     /***
@@ -35,9 +34,11 @@ public class Game extends PApplet {
      */
     public void draw() {
         background(255);
+        blackPieces.get(3).setActivated(true, board);
         drawBoard();
         drawPieces();
         drawActivatedCircles();
+        drawPieces();
         mouseReleased();
     }
 
@@ -49,6 +50,7 @@ public class Game extends PApplet {
         ArrayList<Piece> Pieces = new ArrayList<>();
         for (int i = 1; i <= 8; i++) {
             Pawn p = new Pawn(true, board[i-1][1].getCoordinates(),this, img_white_pawn, img_black_pawn, i);
+            System.out.println("The coords " + Arrays.toString(board[i - 1][1].getCoordinates()));
             Pieces.add(p);
         }
         return Pieces;
@@ -64,11 +66,12 @@ public class Game extends PApplet {
     public void setCoordinates() {
         for (int i = 1; i <= board.length; i++) {
             for (int j = 1; j <= board.length; j++) {
-                int[] coordinates = {j, i};
-                System.out.println(Arrays.toString(coordinates));
-                Board b = new Board(coordinates, this);
+                int[] position = {i, j};
+                System.out.println(Arrays.toString(position));
+                Board b = new Board(position, this);
                 System.out.println(Arrays.toString(b.getCoordinates()));
                 board[i-1][j-1] = b;
+                System.out.println((i-1) +" , " + (j-1));
             }
         }
     }
@@ -119,9 +122,17 @@ public class Game extends PApplet {
 //Need to add capturing, incomplete
     public void mouseReleased() {
         if(moveCounter%2 == 0) {
+            if(activated) {
 
+            } else {
+
+            }
         } else {
+            if (activated) {
 
+            } else {
+
+            }
         }
     }
 

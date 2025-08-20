@@ -9,7 +9,7 @@ public class Pawn extends Piece {
     }
 
 
-    public void displayMoves(Board[][] b) {
+   @Override public void displayMoves(Board[][] b) {
         displayMoveOne(b);
         displayDoubleJump(b);
         displayCaptureLeft(b);
@@ -21,40 +21,40 @@ public class Pawn extends Piece {
     }
     public void displayMoveOne(Board[][] b) {
         int[] activatedPos = new int[2];
-        if (b[pos[0]][pos[1] + getPieceType()].getBoardType() == 0 && this.isActivated()) {
-            b[pos[0]][pos[1] + getPieceType()].setActivated(true);
+        if (b[pos[0]][pos[1] + whiteOrBlack()].getBoardType() == 0 && this.isActivated()) {
+            b[pos[0]][pos[1] + (whiteOrBlack())].setActivated(true);
             activatedPos[0] = pos[0];
-            activatedPos[1] = pos[1] + getPieceType();
+            activatedPos[1] = pos[1] + whiteOrBlack();
             activatedPositions.add(activatedPos);
         }
     }
 
     public void displayDoubleJump(Board[][] b) {
         int[] activatedPos = new int[2];
-        if (b[pos[0]][pos[1] + getPieceType()].getBoardType() == 0 && b[pos[0]][pos[1] + getPieceType()*2].getBoardType() == 0 && timesPlayed == 0 && this.isActivated()) {
-            b[pos[0]][pos[1] + getPieceType() * 2].setActivated(true);
+        if (b[pos[0]][pos[1] + whiteOrBlack()].getBoardType() == 0 && b[pos[0]][pos[1] + whiteOrBlack()*2].getBoardType() == 0 && timesPlayed == 0 && this.isActivated()) {
+            b[pos[0]][pos[1] + (whiteOrBlack() * 2)].setActivated(true);
             activatedPos[0] = pos[0];
-            activatedPos[1] = pos[1] + getPieceType() * 2;
+            activatedPos[1] = pos[1] + whiteOrBlack() * 2;
             activatedPositions.add(activatedPos);
         }
     }
 
     public void displayCaptureLeft(Board[][] b) {
         int[] activatedPos = new int[2];
-        if (b[pos[0]][pos[1]].getBoardType()*getPieceType() > b[pos[0] + getPieceType()][pos[1] + getPieceType()].getBoardType()*getPieceType() && isActivated()) {
-            b[pos[0] + getPieceType()][pos[1] + getPieceType()].setActivated(true);
-            activatedPos[0] = pos[0] + getPieceType();
-            activatedPos[1] = pos[1] + getPieceType();
+        if (b[pos[0]][pos[1]].getBoardType()*whiteOrBlack() > b[pos[0] + whiteOrBlack()][pos[1] + whiteOrBlack()].getBoardType()*whiteOrBlack() && isActivated()) {
+            b[pos[0] + whiteOrBlack()][pos[1] + whiteOrBlack()].setActivated(true);
+            activatedPos[0] = pos[0] + whiteOrBlack();
+            activatedPos[1] = pos[1] + whiteOrBlack();
             activatedPositions.add(activatedPos);
         }
     }
 
     public void displayCaptureRight(Board[][] b) {
         int[] activatedPos = new int[2];
-        if (b[pos[0]][pos[1]].getBoardType()*getPieceType() > b[pos[0] - getPieceType()][pos[1] + getPieceType()].getBoardType()*getPieceType() && isActivated()) {
-            b[pos[0] - getPieceType()][pos[1] + getPieceType()].setActivated(true);
-            activatedPos[0] = pos[0] - getPieceType();
-            activatedPos[1] = (pos[1] + getPieceType());
+        if (b[pos[0]][pos[1]].getBoardType()*whiteOrBlack() > b[pos[0] - whiteOrBlack()][pos[1] + whiteOrBlack()].getBoardType()*whiteOrBlack() && isActivated()) {
+            b[pos[0] - whiteOrBlack()][pos[1] + whiteOrBlack()].setActivated(true);
+            activatedPos[0] = pos[0] - whiteOrBlack();
+            activatedPos[1] = (pos[1] + whiteOrBlack());
             activatedPositions.add(activatedPos);
         }
     }
